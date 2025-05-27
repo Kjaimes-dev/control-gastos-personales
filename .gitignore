@@ -20,7 +20,7 @@ Thumbs.db
 .idea/
 
 # Datos sensibles o configuraciones locales
-datos/*.json
+# datos/*.json
 
 # Python cache
 *.egg-info/

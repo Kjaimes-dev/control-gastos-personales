@@ -1,0 +1,30 @@
+# Entorno virtual
+venv/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos temporales
+*.swp
+*.swo
+*.log
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Configuración de editor (puedes agregar según tu editor)
+.vscode/
+.idea/
+
+# Datos sensibles o configuraciones locales
+datos/*.json
+
+# Python cache
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/

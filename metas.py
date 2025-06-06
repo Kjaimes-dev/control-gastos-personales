@@ -1,7 +1,26 @@
 from finanzas import obtener_balance
 from utils import cargar_json, guardar_json
+from estrategias.porcentaje_fijo import PorcentajeFijoStrategy
+from estrategias.agresivo import AhorroAgresivoStrategy
+from estrategias.conservador import AhorroConservadorStrategy
+
 
 METAS_FILE = "datos/metas.json"
+
+def seleccionar_estrategia():
+    print("\nSelecciona una estrategia de ahorro:")
+    print("1. Porcentaje Fijo (30%)")
+    print("2. Ahorro Agresivo (50%)")
+    print("3. Ahorro Conservador (10%)")
+    opcion = input("Opción: ")
+
+    if opcion == "2":
+        return AhorroAgresivoStrategy()
+    elif opcion == "3":
+        return AhorroConservadorStrategy()
+    else:
+        return PorcentajeFijoStrategy()
+
 
 def registrar_meta(usuario):
     metas = cargar_json(METAS_FILE)
@@ -13,9 +32,12 @@ def registrar_meta(usuario):
 
     # Preguntar ingreso mensual fijo
     ingreso_fijo = float(input("¿Cuál es tu ingreso mensual fijo? "))
-    cuota_sugerida = ingreso_fijo * 0.30  # 30% del ingreso mensual
+    estrategia = seleccionar_estrategia()
+    cuota_sugerida = estrategia.calcular_cuota(ingreso_fijo)
 
-    print(f"\nSe recomienda una cuota mensual de: ${cuota_sugerida:.2f} (30% de tu ingreso mensual).")
+
+    print(f"\nSe recomienda una cuota mensual de: ${cuota_sugerida:.2f} según la estrategia seleccionada.")
+
 
     cuota_mensual = input(f"¿Cuánto puedes ahorrar mensualmente? (Recomendado: ${cuota_sugerida:.2f}): ")
     cuota_mensual = float(cuota_mensual) if cuota_mensual else cuota_sugerida

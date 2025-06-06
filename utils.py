@@ -22,5 +22,5 @@ def cargar_json(ruta):
             return []
 
 def guardar_json(ruta, datos):
-    with open(ruta, 'w', encoding='utf-8') as f:
-        json.dump(datos, f, indent=4, ensure_ascii=False)
+    with open(ruta, 'w', encoding='utf-8') as archivo:
+        json.dump(datos, archivo, indent=4, ensure_ascii=False)
